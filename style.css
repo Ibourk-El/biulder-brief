@@ -5,8 +5,9 @@
 }
 
 :root {
-  --height: 10%;
+  --height:11vmin;
 }
+
 
 .container {
   --mode-color-1: #070b32;
@@ -51,13 +52,13 @@
   width: 60%;
   position: relative;
   height: 100%;
-  bottom: 5%;
+  bottom: 2vmin;
   transform-style: preserve-3d;
-  transform: rotateX(6deg) rotateY(-10deg);
+  transform: rotateX(-9deg) rotateY(-10deg);
 }
 
 .stage {
-  width: 400px;
+  width: 32.5vmin;
   height: var(--height);
   position: absolute;
   transform-style: preserve-3d;
@@ -95,11 +96,11 @@
   justify-content: center;
 }
 .stage .side.front {
-  transform: rotateY(0deg) translateZ(200px);
+  transform: rotateY(0deg) translateZ(16.2vmin);
   border-bottom: 5px solid var(--line-color);
 }
 .stage .side.back {
-  transform: rotateY(180deg) translateZ(200px);
+  transform: rotateY(180deg) translateZ(16.2vmin);
   border-bottom: 5px solid var(--line-color);
   background-image: repeating-conic-gradient(
       var(--bush) 0deg 45deg,
@@ -113,19 +114,19 @@
 }
 
 .stage .side.left {
-  transform: rotateY(90deg) translateZ(-200px);
+  transform: rotateY(90deg) translateZ(-16.2vmin);
   border-bottom: 5px solid var(--line-color);
 }
 .stage .side.right {
-  transform: rotateY(270deg) translateZ(-200px);
+  transform: rotateY(270deg) translateZ(-16.2vmin);
   border-bottom: 5px solid var(--line-color);
 }
 
 /* roof */
 .stage .side.top {
-  width: 27em;
-  height: 27em;
-  transform: rotateX(90deg) translateZ(13.5em) translateX(-3%);
+  width: 35vmin;
+  height: 35vmin;
+  transform: rotateX(90deg) translateZ(17.5vmin) translateX(-3%);
   background-color: var(--line-color);
   display: block;
   transform-style: preserve-3d;
@@ -149,7 +150,7 @@
 }
 .stage .side.top .face {
   width: 100%;
-  height: 30px;
+  height: 4vmin;
   border-top: 5px solid var(--topColor);
   border-bottom: 5px solid var(--topColor);
   transform: rotateX(90deg);
@@ -165,18 +166,17 @@
 }
 
 .stage .side.top .face.front {
-  transform: rotateX(90deg) translateZ(-22.3em) translateY(49%);
+  transform: rotateX(90deg) translateZ(-24.9vmin) translateY(49%);
 }
 .stage .side.top .face.back {
-  transform: rotateX(90deg) translateZ(6em) translateY(49%);
+  transform: rotateX(90deg) translateZ(14vmin) translateY(49%);
 }
 .stage .side.top .face.right {
-  transform: rotateX(90deg) rotateY(90deg) translateZ(-13.5em) translateX(40%)
-    translateY(49%);
+  transform:rotateX(90deg) rotateY(90deg) translateZ(-17.4vmin) translateX(33%) translateY(53%);
 }
 
 .stage .side.top .face.left {
-  transform: rotateX(90deg) rotateY(90deg) translateZ(13.5em) translateX(47%)
+  transform: rotateX(90deg) rotateY(90deg) translateZ(17.5vmin) translateX(44%)
     translateY(49%);
 }
 /* window */
