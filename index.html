@@ -11,6 +11,7 @@
       <input type="checkbox" name="night" id="night" checked  />
       <div class="moon-sun"></div>
     <div class="container">
+      <div class="stars"></div>
       <div class="building">
         <div class="stage one">
           <div class="side top">
@@ -19,14 +20,16 @@
         <div class="stage two">
           <div class="side front">
             <span class="window open"></span>
-            <span class="window close"></span>
-            <span class="window half-open"></span>
-            <span class="window close"></span>
+            <div class="door">
+              <div class="door-side left"></div>
+              <div class="door-side right"></div>
+              <div class="door-side top"></div>
+            </div>
             <span class="window open"></span>
           </div>
           <div class="side left">
-            <span class="window open"></span>
-            <span class="window open"></span>
+            <span class="window close"></span>
+            <span class="window close"></span>
             <span class="window close"></span>
             <span class="window close"></span>
             <span class="window close"></span>
@@ -35,10 +38,10 @@
           </div>
           <div class="side right">
             <span class="window close"></span>
-            <span class="window open"></span>
             <span class="window close"></span>
             <span class="window close"></span>
-            <span class="window open"></span>
+            <span class="window close"></span>
+            <span class="window close"></span>
           </div>
           <div class="side top">
             <div class="face left"></div>
@@ -210,7 +213,26 @@
             <div class="face back"></div>
           </div>
         </div>
-        
     </div>
+    <script>
+
+      let stars=document.querySelector(".stars")
+      let bgImage=["radial-gradient(circle, #ffffff 0% 2%, #fff0 2%)","radial-gradient(circle, #ffffff 0 0.5%, #fff0 0.5%)"]
+      let bgStr=""
+      let psStr=""
+
+      for(let i=0;i<50;i++){
+        let x=Math.floor(Math.random()*90)
+        let y=Math.floor(Math.random()*90)
+        bgStr+=`${bgImage[i%2]} , `
+        psStr+=`${x}% ${y}% , `
+      }
+      let x=Math.floor(Math.random()*90)
+      let y=Math.floor(Math.random()*90)
+      console.log(psStr)
+      stars.style.backgroundImage=`${bgStr} ${bgImage[1]}`
+      stars.style.backgroundPosition=`${psStr} ${x}% ${y}%`
+
+    </script>
   </body>
 </html>

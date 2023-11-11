@@ -2,24 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 1s;
 }
 
 :root {
-  --height:11vmin;
+  --height: 11vmin;
 }
 
-
 .container {
-  --mode-color-1: #070b32;
-  --mode-color-2: #200320;
-  --mode-color-3: #1a1919;
+  --mode-color-1: #bf7b54;
+  --mode-color-2: #733f34;
+  --mode-color-3: #1b1a26;
+  --mode-color-4: #051b24;
   --sideColor: #363c7d;
-  --topColor: #242d8f;
-  --win-open: #cc336e99;
-  --secondColor: #7e2647;
-  --thirdColor: #621d38;
-  --line-color: #070b32;
+  --topColor: #d98f4e;
+  --roof-color: #593b3b;
+  --win-close-1: #8c2f1b;
+  --win-close-2: #d98f4e;
+  --line-color: #bc2f1b;
   --bush: #181b38;
+  --glass-door: #17476b90;
 }
 .container {
   width: 100vw;
@@ -28,26 +30,37 @@
   align-items: center;
   justify-content: center;
   perspective: 1000px;
-  background-color: #242d8f;
   background-image: linear-gradient(
     to top,
     var(--mode-color-1),
     var(--mode-color-2),
-    var(--mode-color-3)
+    var(--mode-color-3),
+    var(--mode-color-4)
   );
   position: relative;
 }
-.container::before {
-  content: "";
+
+.stars{
   width: 100%;
   height: 60%;
-  top: 0;
+  top: -100%;
   position: absolute;
-  background-image: radial-gradient(circle, white 0 2%, #fff0 6% 100%),
-    radial-gradient(circle, #fff0 0% 97%, #ffffff 99% 100%);
-  background-size: 5% 15%, 5% 15%;
+  animation: starsAnimation 2s 1s forwards;
+  /* background-color: transparent; */
+  background-repeat: repeat-x;
+  background-size: 10% 10%;
+
+
 }
 
+@keyframes starsAnimation {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
 .container .building {
   width: 60%;
   position: relative;
@@ -127,7 +140,7 @@
   width: 35vmin;
   height: 35vmin;
   transform: rotateX(90deg) translateZ(17.5vmin) translateX(-3%);
-  background-color: var(--line-color);
+  background-color: var(--roof-color);
   display: block;
   transform-style: preserve-3d;
 }
@@ -172,12 +185,56 @@
   transform: rotateX(90deg) translateZ(14vmin) translateY(49%);
 }
 .stage .side.top .face.right {
-  transform:rotateX(90deg) rotateY(90deg) translateZ(-17.4vmin) translateX(33%) translateY(53%);
+  transform: rotateX(90deg) rotateY(90deg) translateZ(-17.4vmin) translateX(33%)
+    translateY(53%);
 }
 
 .stage .side.top .face.left {
   transform: rotateX(90deg) rotateY(90deg) translateZ(17.5vmin) translateX(44%)
     translateY(49%);
+}
+/* door */
+.stage .side.front .door {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  border: 1vmin solid;
+}
+
+.stage .side.front .door::before,
+.stage .side.front .door::after {
+  position: absolute;
+  content: "";
+  width: 48%;
+  height: 100%;
+  background-color: var(--glass-door);
+}
+.stage .side.front .door::before {
+  border-right: 2px solid white;
+}
+.stage .side.front .door::after {
+  right: 0;
+  border-left: 2px solid white;
+}
+
+.stage .side.front .door .door-side {
+  position: absolute;
+  width: 50%;
+  height: calc(100% + 2vmin);
+  background-color: var(--glass-door);
+  border-radius: 100% 0 0 0;
+}
+.stage .side.front .door .door-side.left {
+  transform: rotateY(90deg) translate3d(-60%, -1vmin, -4.4vmin);
+}
+.stage .side.front .door .door-side.right {
+  transform: rotateY(90deg) translate3d(-60%, -1vmin, 12vmin);
+}
+.stage .side.front .door .door-side.top {
+  width: calc(100% + 2vmin);
+  transform: rotateX(90deg) translate3d(-0.76vmin, 50%, 6vmin);
+  border-radius: 0 0 50% 50%;
 }
 /* window */
 
@@ -194,30 +251,28 @@
   display: inline-block;
   width: 20%;
   height: 100%;
-  background-image: repeating-linear-gradient(
-    0deg,
-    var(--line-color) 0% 5%,
-    var(--topColor) 5% 10%
+  background-image: repeating-radial-gradient(
+    var(--win-close-1) 0% 3%,
+    var(--win-close-2) 3% 10%
   );
-  background-size: 10% 10%;
+  background-size: 20% 10%;
 }
 
 .stage .side .window.small-light {
-  background-image: repeating-linear-gradient(
-    45deg,
-    var(--line-color) 0% 8%,
-    var(--secondColor) 8% 10%,
-    var(--topColor) 10% 18%
+  background-image: repeating-conic-gradient(
+    var(--win-close-1) 0% 8%,
+    var(--line-color) 8% 10%,
+    var(--win-close-2) 10% 18%
   );
-  background-size: 100% 10%;
+  background-size: 100% 20%;
 }
 
 .stage .side .window.open {
-  background-color: var(--win-open);
+  background-color: var(--glass-door);
 }
 
 .stage .side .window.half-open {
-  background-color: var(--win-open);
+  background-color: var(--glass-door);
   position: relative;
 }
 
@@ -237,7 +292,7 @@
 }
 
 .stage .side .window.curtains {
-  background-color: var(--win-open);
+  background-color: var(--glass-door);
 }
 .stage .side .window.curtains::before,
 .stage .side .window.curtains::after {
@@ -258,6 +313,9 @@
   left: 70%;
 }
 
+.stage.two .side.front .window {
+  width: 25%;
+}
 /* input */
 
 label,
@@ -283,12 +341,13 @@ input {
 }
 /* change container var */
 input:checked ~ .container {
-  --mode-color-1: #a1bcc7;
-  --mode-color-2: #23befc;
-  --mode-color-3: #05adf0;
-  --win-open: #3382cc99;
+  --mode-color-1: #f25c05;
+  --mode-color-2: #f25c05;
+  --mode-color-3: #bde3f2;
+  --mode-color-4: #05adf0;
+  --glass-door: #ebeff290;
 }
-input:checked ~ .container::before {
+input:checked ~ .container .stars {
   display: none;
 }
 /* bg */
@@ -300,12 +359,43 @@ input:checked ~ .container::before {
   right: 20%;
   top: 10%;
   border-radius: 50%;
-  box-shadow: 0 0 5px 0 white, 0 0 10px 0 #fff, 0 0 15px 0 #fff,
-  0 0 20px 0 #fff, 0 0 25px 0 #fff, 0 0 30px 0 #fff;
-  background-image: radial-gradient(circle,#fff,#afadad);
+  box-shadow: 0 0 5px 0 white, 0 0 10px 0 #fff, 0 0 15px 0 #fff, 0 0 20px 0 #fff,
+    0 0 25px 0 #fff, 0 0 30px 0 #fff;
+  animation: moonModeEffect 2s linear forwards;
 }
 input:checked ~ .moon-sun {
   box-shadow: 0 0 5px 0 #fafa01, 0 0 10px 0 #fcfc10, 0 0 15px 0 #f5f532,
     0 0 20px 0 #fafa01, 0 0 25px 0 #fcfc10, 0 0 30px 0 #f5f532;
-  background-image: radial-gradient(circle,#dfdf03,#fdfd28);
+  animation: sunModeEffect 2s linear forwards;
+}
+
+@keyframes sunModeEffect {
+  0% {
+    right: 20%;
+    top: 10%;
+  }
+  50% {
+    right: -50%;
+    top: 100%;
+    background-image: radial-gradient(circle, #dfdf03, #fdfd28);
+  }
+  100% {
+    right: 20%;
+    top: 10%;
+    background-image: radial-gradient(circle, #dfdf03, #fdfd28);
+  }
+}
+@keyframes moonModeEffect {
+  0% {
+  }
+  50% {
+    right: -50%;
+    top: 100%;
+    background-image: radial-gradient(circle, #fff, #afadad);
+  }
+  100% {
+    right: 20%;
+    top: 10%;
+    background-image: radial-gradient(circle, #fff, #afadad);
+  }
 }
